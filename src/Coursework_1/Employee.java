@@ -3,48 +3,54 @@ package Coursework_1;
 import java.util.Objects;
 
 public class Employee {
-    private final Integer id;
-    private EmployeesNames employeesNames;
-    private Integer salary;
-    private Integer departmentId;
-
-
-    private static Integer idCounter = 1;
-
-    public Employee(EmployeesNames employeesNames, Integer salary, Integer departmentId) {
+    private final int id;
+    private String fio;
+    private int salary;
+    private Department department;
+    private static int idCounter = 1;
+    public Employee(String fio, int salary, Department department) {
         this.id = idCounter++;
-        this.employeesNames = employeesNames;
+        this.fio = fio;
         this.salary = salary;
-        this.departmentId = departmentId;
-
+        this.department = department;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public EmployeesNames getEmployeesNames() {
-        return employeesNames;
+    public String getFio() {
+        return fio;
     }
 
-    public Integer getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public static Integer getIdCounter() {
+    public static int getIdCounter() {
         return idCounter;
     }
 
-    public void setSalary(Integer salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", fio='" + fio + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
+                '}';
     }
 
     @Override
@@ -52,22 +58,12 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) && Objects.equals(employeesNames, employee.employeesNames) && Objects.equals(salary, employee.salary) && Objects.equals(departmentId, employee.departmentId);
+        return id == employee.id && salary == employee.salary && Objects.equals(fio, employee.fio) && department == employee.department;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, employeesNames, salary, departmentId);
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", employeesNames=" + employeesNames +
-                ", salary=" + salary +
-                ", departmentId=" + departmentId +
-                '}';
+        return Objects.hash(id, fio, salary, department);
     }
 }
 
